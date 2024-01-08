@@ -301,16 +301,16 @@ if __name__ == "__main__":
                 with gr.Column() as col1:
                     xtts_checkpoint = gr.Textbox(
                         label="XTTS checkpoint path:",
-                        value="",
+                        value="/content/Modelo/best_model.pth",
                     )
                     xtts_config = gr.Textbox(
                         label="XTTS config path:",
-                        value="",
+                        value="/content/Modelo/config.json",
                     )
 
                     xtts_vocab = gr.Textbox(
                         label="XTTS vocab path:",
-                        value="",
+                        value="/content/Modelo/vocab.json",
                     )
                     progress_load = gr.Label(
                         label="Progress:"
@@ -318,9 +318,27 @@ if __name__ == "__main__":
                     load_btn = gr.Button(value="Step 3 - Load Fine-tuned XTTS model")
 
                 with gr.Column() as col2:
-                    speaker_reference_audio = gr.Textbox(
+                    speaker_reference_audio = gr.Dropdown(
                         label="Speaker reference audio:",
-                        value="",
+                        value="/content/Modelo/audio_1.wav",
+                        choices=[
+                            "/content/Modelo/audio_1.wav",
+                            "/content/Modelo/audio_2.wav",
+                            "/content/Modelo/audio_3.wav",
+                            "/content/Modelo/audio_4.wav",
+                            "/content/Modelo/audio_5.wav",
+                            "/content/Modelo/audio_6.wav",
+                            "/content/Modelo/audio_7.wav",
+                            "/content/Modelo/audio_8.wav",
+                            "/content/Modelo/audio_9.wav",
+                            "/content/Modelo/audio_1.wav",
+                            "/content/Modelo/audio_10.wav",
+                            "/content/Modelo/audio_11.wav",
+                            "/content/Modelo/audio_12.wav",
+                            "/content/Modelo/audio_13.wav",
+                            "/content/Modelo/audio_14.wav",
+                            "/content/Modelo/audio_15.wav",
+                        ]
                     )
                     tts_language = gr.Dropdown(
                         label="Language",
