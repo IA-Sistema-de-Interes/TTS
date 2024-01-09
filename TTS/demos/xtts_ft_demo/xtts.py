@@ -318,7 +318,7 @@ if __name__ == "__main__":
                     load_btn = gr.Button(value="Step 3 - Load Fine-tuned XTTS model")
 
                 with gr.Column() as col2:
-                    speaker_reference_audio = gr.TextBox(
+                    speaker_reference_audio = gr.Textbox(
                         label="Speaker reference audio:",
                         value="",
                     )
