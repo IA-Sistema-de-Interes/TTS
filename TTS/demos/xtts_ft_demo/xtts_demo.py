@@ -156,7 +156,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-        with gr.Tab("Inference"):
+    with gr.Blocks() as demo:
+        with gr.Tab("3 - Inference"):
             with gr.Row():
                 with gr.Column() as col1:
                     xtts_checkpoint = gr.Textbox(
@@ -175,7 +176,7 @@ if __name__ == "__main__":
                     progress_load = gr.Label(
                         label="Progress:"
                     )
-                    load_btn = gr.Button(value="Load Fine-tuned XTTS model")
+                    load_btn = gr.Button(value="Step 3 - Load Fine-tuned XTTS model")
 
                 with gr.Column() as col2:
                     speaker_reference_audio = gr.Dropdown(
@@ -226,7 +227,7 @@ if __name__ == "__main__":
                         label="Input Text.",
                         value="This model sounds really good and above all, it's reasonably fast.",
                     )
-                    tts_btn = gr.Button(value="Inference")
+                    tts_btn = gr.Button(value="Step 4 - Inference")
 
                 with gr.Column() as col3:
                     progress_gen = gr.Label(
@@ -235,35 +236,6 @@ if __name__ == "__main__":
                     tts_output_audio = gr.Audio(label="Generated Audio.")
                     reference_audio = gr.Audio(label="Reference audio used.")
 
-            prompt_compute_btn.click(
-                fn=preprocess_dataset,
-                inputs=[
-                    upload_file,
-                    lang,
-                    out_path,
-                ],
-                outputs=[
-                    progress_data,
-                    train_csv,
-                    eval_csv,
-                ],
-            )
-
-
-            train_btn.click(
-                fn=train_model,
-                inputs=[
-                    lang,
-                    train_csv,
-                    eval_csv,
-                    num_epochs,
-                    batch_size,
-                    grad_acumm,
-                    out_path,
-                    max_audio_length,
-                ],
-                outputs=[progress_train, xtts_config, xtts_vocab, xtts_checkpoint, speaker_reference_audio],
-            )
             
             load_btn.click(
                 fn=load_model,
