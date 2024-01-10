@@ -156,7 +156,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    with gr.Blocks() as demo
         with gr.Tab("Inference"):
             with gr.Row():
                 with gr.Column() as col1:
