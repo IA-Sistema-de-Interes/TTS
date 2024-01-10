@@ -176,7 +176,7 @@ if __name__ == "__main__":
                     progress_load = gr.Label(
                         label="Progress:"
                     )
-                    load_btn = gr.Button(value="Step 3 - Load Fine-tuned XTTS model")
+                    load_btn = gr.Button(value="Load Fine-tuned XTTS model")
 
                 with gr.Column() as col2:
                     speaker_reference_audio = gr.Dropdown(
@@ -227,7 +227,7 @@ if __name__ == "__main__":
                         label="Input Text.",
                         value="This model sounds really good and above all, it's reasonably fast.",
                     )
-                    tts_btn = gr.Button(value="Step 4 - Inference")
+                    tts_btn = gr.Button(value="Inference")
 
                 with gr.Column() as col3:
                     progress_gen = gr.Label(
