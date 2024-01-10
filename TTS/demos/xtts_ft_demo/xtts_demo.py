@@ -157,7 +157,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     with gr.Blocks() as demo:
-        with gr.Tab("3 - Inference"):
+        with gr.Tab("Inference"):
             with gr.Row():
                 with gr.Column() as col1:
                     xtts_checkpoint = gr.Textbox(
@@ -176,7 +176,7 @@ if __name__ == "__main__":
                     progress_load = gr.Label(
                         label="Progress:"
                     )
-                    load_btn = gr.Button(value="Step 3 - Load Fine-tuned XTTS model")
+                    load_btn = gr.Button(value="Load Fine-tuned XTTS model")
 
                 with gr.Column() as col2:
                     speaker_reference_audio = gr.Dropdown(
