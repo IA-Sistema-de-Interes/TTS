@@ -156,6 +156,25 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    language_names = {
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German",
+    "it": "Italian",
+    "pt": "Portuguese",
+    "pl": "Polish",
+    "tr": "Turkish",
+    "ru": "Russian",
+    "nl": "Dutch",
+    "cs": "Czech",
+    "ar": "Arabic",
+    "zh": "Chinese",
+    "hu": "Hungarian",
+    "ko": "Korean",
+    "ja": "Japanese",
+}
+
     with gr.Blocks() as demo:
         with gr.Tab("Inference"):
             with gr.Row():
@@ -204,24 +223,7 @@ if __name__ == "__main__":
                     tts_language = gr.Dropdown(
                         label="Language",
                         value="en",
-                        choices=[
-                            "en",
-                            "es",
-                            "fr",
-                            "de",
-                            "it",
-                            "pt",
-                            "pl",
-                            "tr",
-                            "ru",
-                            "nl",
-                            "cs",
-                            "ar",
-                            "zh",
-                            "hu",
-                            "ko",
-                            "ja",
-                        ]
+                        choices=list(zip(language_names.values(), language_names.keys()))
                     )
                     tts_text = gr.Textbox(
                         label="Input Text.",
