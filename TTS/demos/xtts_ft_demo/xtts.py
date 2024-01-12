@@ -47,7 +47,7 @@ def run_tts(lang, tts_text, speaker_audio_file):
     gpt_cond_latent, speaker_embedding = XTTS_MODEL.get_conditioning_latents(audio_path=speaker_audio_file, gpt_cond_len=XTTS_MODEL.config.gpt_cond_len, max_ref_length=XTTS_MODEL.config.max_ref_len, sound_norm_refs=XTTS_MODEL.config.sound_norm_refs)
     out = XTTS_MODEL.inference(
         text=tts_text,
-        language=lang,
+        language=language_mapping.get(lang, "Desconocido"),
         gpt_cond_latent=gpt_cond_latent,
         speaker_embedding=speaker_embedding,
         temperature=XTTS_MODEL.config.temperature, # Add custom parameters here
@@ -105,6 +105,24 @@ def read_logs():
     with open(sys.stdout.log_file, "r") as f:
         return f.read()
 
+language_mapping = {
+    'English': 'en',
+    'Spanish': 'es',
+    'French': 'fr',
+    'German': 'de',
+    'Italian': 'it',
+    'Portuguese': 'pt',
+    'Polish': 'pl',
+    'Turkish': 'tr',
+    'Russian': 'ru',
+    'Dutch': 'nl',
+    'Czech': 'cs',
+    'Arabic': 'ar',
+    'Chinese': 'zh',
+    'Hungarian': 'hu',
+    'Korean': 'ko',
+    'Japanese': 'ja'
+}
 
 if __name__ == "__main__":
 
@@ -175,22 +193,22 @@ if __name__ == "__main__":
                 label="Dataset Language",
                 value="en",
                 choices=[
-                    "en",
-                    "es",
-                    "fr",
-                    "de",
-                    "it",
-                    "pt",
-                    "pl",
-                    "tr",
-                    "ru",
-                    "nl",
-                    "cs",
-                    "ar",
-                    "zh",
-                    "hu",
-                    "ko",
-                    "ja"
+                    "English",
+                    "Spanish",
+                    "French",
+                    "German",
+                    "Italian",
+                    "Portuguese",
+                    "Polish",
+                    "Turkish",
+                    "Russian",
+                    "Dutch",
+                    "Czech",
+                    "Arabic",
+                    "Chinese",
+                    "Hungarian",
+                    "Korean",
+                    "Japanese",
                 ],
             )
             progress_data = gr.Label(
@@ -326,22 +344,22 @@ if __name__ == "__main__":
                         label="Language",
                         value="en",
                         choices=[
-                            "en",
-                            "es",
-                            "fr",
-                            "de",
-                            "it",
-                            "pt",
-                            "pl",
-                            "tr",
-                            "ru",
-                            "nl",
-                            "cs",
-                            "ar",
-                            "zh",
-                            "hu",
-                            "ko",
-                            "ja",
+                            "English",
+                            "Spanish",
+                            "French",
+                            "German",
+                            "Italian",
+                            "Portuguese",
+                            "Polish",
+                            "Turkish",
+                            "Russian",
+                            "Dutch",
+                            "Czech",
+                            "Arabic",
+                            "Chinese",
+                            "Hungarian",
+                            "Korean",
+                            "Japanese",
                         ]
                     )
                     tts_text = gr.Textbox(
@@ -361,7 +379,7 @@ if __name__ == "__main__":
                 fn=preprocess_dataset,
                 inputs=[
                     upload_file,
-                    lang,
+                    language_mapping.get(lang, "Desconocido"),
                     out_path,
                 ],
                 outputs=[
@@ -375,7 +393,7 @@ if __name__ == "__main__":
             train_btn.click(
                 fn=train_model,
                 inputs=[
-                    lang,
+                    language_mapping.get(lang, "Desconocido"),
                     train_csv,
                     eval_csv,
                     num_epochs,
@@ -400,7 +418,7 @@ if __name__ == "__main__":
             tts_btn.click(
                 fn=run_tts,
                 inputs=[
-                    tts_language,
+                    language_mapping.get(tts_language, "Desconocido"),
                     tts_text,
                     speaker_reference_audio,
                 ],
